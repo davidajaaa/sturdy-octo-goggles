@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>david</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            width: 300px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-yes {
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+        }
+
+        .button-no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        .thank-you {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            border-radius: 10px;
+        }
+
+        .thank-you p {
+            padding: 20px;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <p>mau ngak jadi pacar ku?</p>
+
+        <div class="buttons">
+            <button class="button button-yes">iya</button>
+            <button class="button button-no">No</button>
+        </div>
+
+        <div class="thank-you">
+            <p>maaci lopyou😘</p>
+        </div>
+    </div>
+
+    <script>
+        // Get the buttons and thank-you div
+        const yesButton = document.querySelector('.button-yes');
+        const noButton = document.querySelector('.button-no');
+        const thankYouMessage = document.querySelector('.thank-you');
+
+        // Show the thank-you message when 'iya' button is clicked
+        yesButton.addEventListener('click', () => {
+            // Add the move class to make the button move
+            yesButton.classList.add('move');
+            setTimeout(() => {
+                thankYouMessage.style.display = 'flex';
+            }, 1000); // Show the "thank you" message after the animation ends
+        });
+
+        // Function to move the "No" button randomly
+        function moveNoButton() {
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        // Move the "No" button when it's clicked
+        noButton.addEventListener('click', () => {
+            moveNoButton();
+        });
+
+        // Hide the thank-you message when 'No' button is clicked
+        noButton.addEventListener('click', () => {
+            thankYouMessage.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
